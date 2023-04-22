@@ -1,0 +1,25 @@
+{% extends 'Zaunita/base.html' %} 
+
+{% block main %} 
+<ul>
+    <h1> Mensajes </h1>
+    {% if not correos %}
+        <h2> NO TIENES CORREOS </h2>
+    {% endif %}
+{% for correo in object_list %}
+
+    <li>
+        <p>{{correo.email}}</p>
+        <br>
+        <p>{{correo.correo}}</p>
+        <br>
+        <img src="{{correo.imagen.url }}" width="320px" height="100%">
+        <br>
+        {% if user.is_authenticated and correo.destinatario == user %}
+            <a href="{% url 'correo-delete' correo.id %}"> Eliminar</a>
+        {% endif %}
+
+    </li>
+{% endfor %} 
+</ul>
+{% endblock %} 

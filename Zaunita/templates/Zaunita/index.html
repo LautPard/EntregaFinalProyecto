@@ -1,0 +1,85 @@
+{% extends 'Zaunita/base.html' %} 
+
+{% block main %} 
+<main>
+
+  <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      
+      {% for publication in publicaciones %}
+        {% if forloop.first %}
+          <div class="carousel-item active">
+        {% else %}
+            <div class="carousel-item">
+        {% endif %}
+           
+          <img src="{{publication.imagen.url}}">
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <h1 style="color: red">{{publication.ejercicio}}</h1>
+              <p><a class="btn btn-lg btn-dark" href="{% url 'publicacion-detail' publication.id %}">Ver Mas</a></p>
+            </div>
+          </div>
+        </div>
+        
+      {% endfor %}
+
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+    <div class="row">
+
+    {% for publication in publicaciones %}
+      <div class="col-lg-4">
+        <img src="{{publication.imagen.url}}" height="144" width="144">
+        <h2>{{publication.ejercicio}}</h2>
+        <h4>{{publication.gymrat.username}}</h4>
+        <p><a class="btn btn-secondary" href="{% url 'publicacion-detail' publication.id %}">Ver Mas »</a></p>
+      </div>
+    {% endfor %}
+    </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+
+    {% for publication in publicaciones %}
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">{{publication.ejercicio}}</h2>
+        <p class="lead">{{publication.gymrat.username}}</p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        
+          <img src="{{publication.imagen.url}}" height="400" width="400">
+        
+
+      </div>
+    </div>
+    {% endfor %}
+    
+
+
+    <!-- /END THE FEATURETTES -->INDEX.
+
+  </div><!-- /.container -->
+
+
+{% endblock %} 

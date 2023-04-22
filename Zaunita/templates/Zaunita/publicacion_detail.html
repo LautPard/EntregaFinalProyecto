@@ -1,0 +1,20 @@
+{% extends 'Zaunita/base.html' %} 
+
+{% block main %} 
+
+<p>
+    <h1>{{object.ejercicio}}</h1>
+    <h4>{{object.gymrat}}</h4>
+    {% if object.imagen %}
+        <br>
+        <img src="{{object.imagen.url }}" width="320px" height="100%">
+        <br>
+    {% endif %} 
+        {{object.descripcion}}
+        <br>
+        {{object.creado}}
+        <br>
+    <a href="{% url 'publicacion-list' %}"> volver</a> 
+</p>
+
+{% endblock %}

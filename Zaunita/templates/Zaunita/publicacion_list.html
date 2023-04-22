@@ -1,0 +1,22 @@
+{% extends 'Zaunita/base.html' %}  
+
+{% block main %} 
+<ul>
+    <h1> Lista de Publicaciones </h1>
+    {% if not object_list %}
+        <h2> AUN NO HAY PUBLICACIONES </h2>
+    {% endif %}
+    
+    {% for publication in publicaciones %}
+<li>
+    {{publication}}
+    <a href="{% url 'publicacion-detail' publication.id %}"> Mostrar mas</a>
+    {% if user.is_authenticated and publication.gymrat == user%}
+        <a href="{% url 'publicacion-update' publication.id  %}"> Actualizar</a>
+        <a href="{% url 'publicacion-delete' publication.id  %}"> Eliminar</a>
+    {% endif %}
+
+</li>
+{% endfor %} 
+</ul>
+{% endblock %} 
